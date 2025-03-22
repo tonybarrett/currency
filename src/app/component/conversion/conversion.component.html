@@ -1,1 +1,36 @@
-<p>Currancies - {{currencies[0].name}}</p>
+<div class="flex-line currencies">
+    <div id="currency-from">
+        <label for="currency-from">Currency to convert from:&nbsp;</label>
+        <select name="currency-from" id="currency-from" [(ngModel)]="currencyFrom">
+            @for(currency of rawCurrencies.response; track currency.id) {
+            <option value={{currency.short_code}}>{{currency.name}}</option>
+            }
+        </select>
+    </div>
+
+    <div id="currency-to">
+        <label for="currency-to">Currency to convert to:&nbsp;</label>
+        <select name="currency-to" id="currency-to" [(ngModel)]="currencyTo">
+            @for(currency of rawCurrencies.response; track currency.id) {
+            <option value={{currency.short_code}}>{{currency.name}}</option>
+            }
+        </select>
+    </div>
+</div>
+
+<div class="flex-line amount">
+    <div>
+        <label for="amount">Amount to convert:&nbsp;</label>
+        <input type="number" min="0" name="amount" id="amount" [(ngModel)]="amount">
+    </div>
+</div>
+
+<div class="flex-line button">
+    <button (click)="convertAmount()">CONVERT</button>
+</div>
+
+<div class="flex-line value">
+    <label>
+        Value:&nbsp;{{convertedValue}}
+    </label>
+</div>
